@@ -1,0 +1,32 @@
+## -----------------------
+CodeIgniter ORMish models
+## -----------------------
+
+I'm sure there's loads of people out there that've done this before, but
+this evolved out of some playing I was doing with the Joind.in (http://joind.in)
+project. The "models" for it are basically glorified libraries of methods, so
+I figured I could come up with something better that wasn't too complicated.
+
+The result is this model system in these four files:
+
+# MY_Loader.php
+This is a custom loader that extends the built-in loader with the new "model_obj"
+method to load in our custom model objects. To use, drop in your /libraries directory
+
+# Base.php
+This is the base model that holds interfaces to the most common ORMish calls - create,
+delete, find. All of the other models extend it to get its features.
+
+# Event.php
+This is an example model - it's used on the "events" table. You can see how to define 
+the column mappings and table name. There's a fun thing in here too...the ORM keys.
+Think of these as accessible links to other tables. Rather than having to run more than one
+query by hand and combine the results, let the ORM do it for you. You'll see examples of
+this in the sample.php controller where the $filters are used
+
+# sample.php
+This is the sample controller with a few different examples of how to use the objects to
+find, create and delete. (Update's still in the works). It shows the use of the standard
+"find" calls as well as the dynamic "findBy[column name]"
+
+author: Chris Cornutt <enygma@phpdeveloper.org>
